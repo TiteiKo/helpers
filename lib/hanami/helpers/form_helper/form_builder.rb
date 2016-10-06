@@ -1026,7 +1026,8 @@ module Hanami
 
           value = _value(name)
           attributes[:checked] = CHECKED if !value.nil? &&
-                                            (value == attributes[:value] || value.include?(attributes[:value]))
+                                            (value == attributes[:value] || value.is_a?(TrueClass) ||
+                                            (value.is_a?(Array) && value.include?(attributes[:value])))
 
           attributes
         end
